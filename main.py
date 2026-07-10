@@ -9,39 +9,30 @@ if password_length >= 8:
 else:
     print("Password is too short.")
 
-# Uppercase Check
+# Character Checks (Optimized)
+
 has_uppercase = False
+has_lowercase = False
+has_digit = False
+has_special = False
 
 for character in password:
     if character.isupper():
         has_uppercase = True
 
-print("Contains Uppercase:", has_uppercase)
-
-# Number Check
-has_digit = False
-
-for character in password:
-    if character.isdigit():
-        has_digit = True
-
-print("Contains Number:", has_digit)
-
-has_lowercase = False
-
-for character in password:
     if character.islower():
         has_lowercase = True
 
-print("Contains Lowercase:", has_lowercase)
+    if character.isdigit():
+        has_digit = True
 
-has_special = False
-for character in password:
     if character in "@#$%&!*?":
         has_special = True
 
+print("Contains Uppercase:", has_uppercase)
+print("Contains Lowercase:", has_lowercase)
+print("Contains Number:", has_digit)
 print("Contains Special Character:", has_special)
-
 score = 0
 
 if password_length >= 8:
@@ -74,4 +65,24 @@ else:
 
 print("\nPassword check completed successfully.")
 
-   
+# Suggestions
+
+if score == 5:
+    print("\nExcellent! Your password meets all basic security requirements.")
+else:
+    print("\nSuggestions:")
+
+    if password_length < 8:
+        print("- Password should be at least 8 characters long.")
+
+    if not has_uppercase:
+        print("- Add at least one uppercase letter.")
+
+    if not has_lowercase:
+        print("- Add at least one lowercase letter.")
+
+    if not has_digit:
+        print("- Add at least one number.")
+
+    if not has_special:
+        print("- Add at least one special character (@#$%&!*?).")
